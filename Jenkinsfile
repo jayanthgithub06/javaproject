@@ -27,7 +27,7 @@ environment {
     }
     stage('Deploying app') {
       steps {
-        sh 'pm2 serve build 4005 --watch'
+        sh 'pm2 serve build 4002 --watch'
       }
     }
   }
