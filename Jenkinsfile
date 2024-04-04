@@ -28,9 +28,8 @@ pipeline {
         }
         stage('Deploying app') {
             steps {
-                bat 'pm2 serve build 4005 --watch'
+                bat 'npx pm2 serve build 4005 --watch'
             }
         }
     }
 }
-
