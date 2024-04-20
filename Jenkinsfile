@@ -28,7 +28,7 @@ pipeline {
 
         stage('Deploying app') {
             environment {
-                PATH = "$PATH:C:\\Users\\<your_username>\\AppData\\Roaming\\npm"
+                PATH = "$PATH:C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\HelloWorldPipelineAsCode\\.npm\\_npx\\5f7878ce38f1eb13\\node_modules\\pm2\\bin"
             }
             steps {
                 bat 'pm2 serve build 4002 --watch'
