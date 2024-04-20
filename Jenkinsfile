@@ -33,7 +33,7 @@ pipeline {
 
         stage('Deploying app') {
             steps {
-                sh 'E:\\work\\ReactApp1\\node_modules\\.bin\\pm2 serve build 4005 --watch'
+                sh 'pm2 serve build 4005 --watch'
             }
         }
     }
