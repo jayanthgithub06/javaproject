@@ -35,7 +35,11 @@ pipeline {
             steps {
                 script {
                     def pathToPM2 = bat(script: "where pm2", returnStdout: true).trim()
-                    bat "${pathToPM2} serve build 4005 --watch"
+                    if (pathToPM2) {
+                        bat "start ${pathToPM2} serve build 4005 --watch"
+                    } else {
+                        echo "PM2 is not installed, please install it."
+                    }
                 }
             }
         }
