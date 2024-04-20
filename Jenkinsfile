@@ -7,33 +7,33 @@ pipeline {
     }
 
     stages {
-        stage('node info') {
+        stage('Node Info') {
             steps {
-                sh "npm config ls"
+                bat "npm config ls"
             }
         }
 
-        stage('Install node modules') {
+        stage('Install Node Modules') {
             steps {
-                sh "npm install"
+                bat "npm install"
             }
         }
 
-        stage('Running tests') {
+        stage('Running Tests') {
             steps {
-                sh "npm test"
+                bat "npm test"
             }
         }
 
-        stage('Building app') {
+        stage('Building App') {
             steps {
-                sh "npm run build"
+                bat "npm run build"
             }
         }
 
-        stage('Deploying app') {
+        stage('Deploying App') {
             steps {
-                sh 'pm2 serve build 4005 --watch'
+                bat 'pm2 serve build 4005 --watch'
             }
         }
     }
