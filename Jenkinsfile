@@ -12,22 +12,22 @@ environment {
     }
     stage ('Install node modules') {
       steps {
-        sh "npm install"
+        bat "npm install"
       }
     }
     stage('Running tests'){
       steps {
-        sh "npm test"
+        bat "npm test"
       }
     }
     stage('Building app'){
       steps {
-        sh "npm run build"
+        bat "npm run build"
       }
     }
     stage('Deploying app') {
       steps {
-        sh 'pm2 serve build 4005 --watch'
+        bat 'pm2 serve build 4005 --watch'
       }
     }
   }
