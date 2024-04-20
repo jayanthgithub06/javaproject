@@ -33,7 +33,10 @@ pipeline {
 
         stage('Deploying App') {
             steps {
-                bat 'pm2 serve build 4005 --watch'
+                script {
+                    def pathToPM2 = bat(script: "where pm2", returnStdout: true).trim()
+                    bat "${pathToPM2} serve build 4005 --watch"
+                }
             }
         }
     }
