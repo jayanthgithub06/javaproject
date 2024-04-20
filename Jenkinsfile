@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         NPM_CONFIG_CACHE = "${WORKSPACE}/.npm"
-        PATH = "$PATH:E:\\work\\ReactApp1\\node_modules\\.bin"
+        PATH = "$PATH:C:\\Users\\jayanth\\AppData\\Roaming\\npm"
     }
 
     stages {
