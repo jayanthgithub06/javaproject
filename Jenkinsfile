@@ -3,13 +3,12 @@ pipeline {
 
     environment {
         NPM_CONFIG_CACHE = "${WORKSPACE}/.npm"
-        PM2_PATH = "C:\\Users\\jayanth\\AppData\\Roaming\\npm\\pm2.cmd"
     }
-
+    
     stages {
         stage ('node info') {
             steps {
-                sh "npm config ls"
+                bat "npm config ls"
             }
         }
         stage ('Install node modules') {
@@ -29,7 +28,7 @@ pipeline {
         }
         stage('Deploying app') {
             steps {
-                bat "${env.PM2_PATH} serve build 4005 --watch"
+                bat 'C:\Users\jayanth\AppData\Roaming\npm\pm2.cmd serve build 4005 --watch'
             }
         }
     }
