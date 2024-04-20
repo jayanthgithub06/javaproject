@@ -3,44 +3,32 @@ pipeline {
 
     environment {
         NPM_CONFIG_CACHE = "${WORKSPACE}/.npm"
-        PATH = "$PATH:C:\\Users\\jayanth\\AppData\\Roaming\\npm"
     }
-
+    
     stages {
-        stage('Node Info') {
+        stage ('node info') {
             steps {
                 bat "npm config ls"
             }
         }
-
-        stage('Install Node Modules') {
+        stage ('Install node modules') {
             steps {
                 bat "npm install"
             }
         }
-
-        stage('Running Tests') {
+        stage('Running tests'){
             steps {
                 bat "npm test"
             }
         }
-
-        stage('Building App') {
+        stage('Building app'){
             steps {
                 bat "npm run build"
             }
         }
-
-        stage('Deploying App') {
+        stage('Deploying app') {
             steps {
-                script {
-                    def pathToPM2 = bat(script: "where pm2", returnStdout: true).trim()
-                    if (pathToPM2) {
-                        bat "start ${pathToPM2} serve build 4005 --watch"
-                    } else {
-                        echo "PM2 is not installed, please install it."
-                    }
-                }
+                bat 'npx pm2 serve build 4005 --watch'
             }
         }
     }
