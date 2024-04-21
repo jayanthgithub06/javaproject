@@ -28,7 +28,7 @@ pipeline {
         }
         stage('Deploying app') {
             steps {
-                bat 'bat 'C:\\Users\\jayanth\\AppData\\Roaming\\npm\\pm2.cmd npx pm2 serve build 4005 --watch'
+                bat 'C:\\Users\\jayanth\\AppData\\Roaming\\npm\\pm2.cmd npx pm2 serve build 4005 --watch'
 '
             }
         }
