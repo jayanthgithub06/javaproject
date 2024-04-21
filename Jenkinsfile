@@ -1,25 +1,30 @@
-pipeline{
+pipeline {
     agent any
-    stages{
-        stage('install node modules')
-        steps{
-            sh "npm install"
+    stages {
+        stage('Install Node modules') {
+            steps {
+                // Clean up node_modules before installing to ensure a fresh install
+                sh "rm -rf node_modules"
+                sh "npm install"
+            }
+        }
+        stage('Running tests') {
+            steps {
+                // Run tests with npm test
+                sh "npm test"
+            }
+        }
+        stage('Building app') {
+            steps {
+                // Run the build process
+                sh "npm run build"
+            }
+        }
+        stage('Deploying app') {
+            steps {
+                // Use pm2 to serve the built app
+                sh 'pm2 serve build 4005 --watch'
+            }
         }
     }
-    stage('Running tests'){
-        steps{
-            sh "npm test"
-        }
-    }
-    stage('Building app'){
-        steps{
-            sh"npm run build"
-        }
-    }
-    stage('deploying app'){
-        steps{
-            sh 'pm2 serve build 4005 --watch'
-        }
-    }
-
 }
