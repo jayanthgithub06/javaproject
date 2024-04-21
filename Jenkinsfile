@@ -1,35 +1,25 @@
-pipeline {
+pipeline{
     agent any
+    stages{
+        stage('install node modules')
+        steps{
+            sh "npm install"
+        }
+    }
+    stage('Running tests'){
+        steps{
+            sh "npm test"
+        }
+    }
+    stage('Building app'){
+        steps{
+            sh"npm run build"
+        }
+    }
+    stage('deploying app'){
+        steps{
+            sh 'pm2 serve build 4005 --watch'
+        }
+    }
 
-    environment {
-        NPM_CONFIG_CACHE = "${WORKSPACE}/.npm"
-    }
-    
-    stages {
-        stage ('node info') {
-            steps {
-                bat "npm config ls"
-            }
-        }
-        stage ('Install node modules') {
-            steps {
-                bat "npm install"
-            }
-        }
-        stage('Running tests'){
-            steps {
-                bat "npm test"
-            }
-        }
-        stage('Building app'){
-            steps {
-                bat "npm run build"
-            }
-        }
-        stage('Deploying app') {
-            steps {
-                bat 'C:\\Users\\jayanth\\AppData\\Roaming\\npm\\pm2.cmd npx pm2 serve build 4005 --watch'
-            }
-        }
-    }
 }
