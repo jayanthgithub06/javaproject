@@ -2,35 +2,33 @@ pipeline {
     agent any
 
     environment {
-        // Set npm cache directory
         NPM_CONFIG_CACHE = "${WORKSPACE}/.npm"
     }
-
+    
     stages {
-        stage('Node Info') {
+        stage ('node info') {
             steps {
-                bat 'npm config ls'
+                bat "npm config ls"
             }
         }
-        stage('Install Node Modules') {
+        stage ('Install node modules') {
             steps {
-                bat 'npm install'
+                bat "npm install"
             }
         }
-        stage('Running Tests') {
+        stage('Running tests'){
             steps {
-                bat 'npm test'
+                bat "npm test"
             }
         }
-        stage('Building App') {
+        stage('Building app'){
             steps {
-                bat 'npm run build'
+                bat "npm run build"
             }
         }
-        stage('Deploying App') {
+        stage('Deploying app') {
             steps {
-                // Serve the build directory using pm2
-                bat 'pm2 serve build 4005 --watch'
+                bat 'npx pm2 serve build 4005 --watch'
             }
         }
     }
