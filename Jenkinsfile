@@ -23,7 +23,7 @@ pipeline {
         stage('Deploying app') {
             steps {
                 // Use pm2 to serve the built app
-                sh 'pm2 serve build 4005 --watch'
+                sh 'pm2 serve build 4005 '
             }
         }
     }
